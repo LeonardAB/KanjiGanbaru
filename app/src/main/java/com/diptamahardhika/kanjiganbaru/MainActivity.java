@@ -1,10 +1,13 @@
 package com.diptamahardhika.kanjiganbaru;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,11 +17,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDB = new DatabaseHelper(this);
+        final EditText searchTerm= (EditText) findViewById(R.id.dictSearch);
+        Button searchBttn = (Button) findViewById(R.id.searchBttn);
+        searchBttn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+               // Toast.makeText(MainActivity.this,searchTerm.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, DictSearch.class);
+                    i.putExtra("searchTerm", searchTerm.getText().toString());
+                    startActivity(i);
+            }
+        });
+
     }
 
-    public void toastTest(View view) {
-        Toast.makeText(this,"test toast", Toast.LENGTH_LONG).show();
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
