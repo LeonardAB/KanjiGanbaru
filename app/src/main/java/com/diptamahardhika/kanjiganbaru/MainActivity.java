@@ -8,15 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    DatabaseHelper myDB;
+    DatabaseAdapter myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDB = new DatabaseHelper(this);
+        myDB = new DatabaseAdapter(this);
         final EditText searchTerm= (EditText) findViewById(R.id.dictSearch);
         Button searchBttn = (Button) findViewById(R.id.searchBttn);
         searchBttn.setOnClickListener(new View.OnClickListener() {

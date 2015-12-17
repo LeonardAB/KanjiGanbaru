@@ -1,5 +1,6 @@
 package com.diptamahardhika.kanjiganbaru;
 
+import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class DictSearch extends AppCompatActivity {
+DatabaseAdapter dbHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +18,17 @@ public class DictSearch extends AppCompatActivity {
         TextView lexeme = (TextView) findViewById(R.id.lexeme);
         String searchTerm = getIntent().getExtras().getString("searchTerm");
         lexeme.setText(searchTerm);
+        dbHelper = new DatabaseAdapter(this) ;
+//        long id = dbHelper.insertData(searchTerm);
+//        if (id<0){
+//Message.message (this,"unsuccesful");
+//        }
+//        else {
+//            Message.message (this,"succesfully insert "+searchTerm);
+//        }
+        //String data = dbHelper.getAllData();
+        String data = dbHelper.getData(searchTerm);
+        Message.message(this,data);
     }
 
     @Override
